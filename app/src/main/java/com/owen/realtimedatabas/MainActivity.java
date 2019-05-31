@@ -80,6 +80,48 @@ public class MainActivity extends AppCompatActivity {
     {
         if (mImageUri != null)
         {
+             StorageReference fileRef = mStorageRef.child(System.currentTimeMillis() + "." +getFileExtension(mImageUri));
+            fileRef.putFile(mImageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
+                    {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+                        {
+                            //set a delay to as the document uploads
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mProgressBar.setProgress(0);
+                                }
+                            },5000);
+                            Toast.makeText(MainActivity.this, "Upload Success", Toast.LENGTH_LONG).show();
+
+                            //check //TODO
+                            Uploads uploads = new Uploads(mEditText.getText().toString().trim(),
+                                    taskSnapshot.getUploadSessionUri().toString());
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener()
+                    {
+                        @Override
+                        public void onFailure(@NonNull Exception e)
+                        {
+                            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>()
+                    {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot)
+                        {
+                            //get the time for progress while uploading
+                                 double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                 mProgressBar.setProgress((int)progress);
+                        }
+                    });
+
 
         }
         else
