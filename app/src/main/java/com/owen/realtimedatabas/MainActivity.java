@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void openFileChooser()
     {
+        //this method to open implicit intents
         Intent intent = new Intent();
         intent.setType("images/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void findIds()
     {
+        //gets relevant view from the UI
         btnChooseFile = (Button) findViewById(R.id.btn_choose_file);
         btnUplaod = (Button) findViewById(R.id.btn_upload);
         tvUpshowUpLoads = (TextView)findViewById(R.id.tv_show_uploads);
