@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="Enter File Name"
-        android:layout_toRightOf="@id/btn_choose_file"
+        android:layout_toRightOf="<a style='cursor: pointer;' id='ar0'>@id/btn_choose_file</a>"
         />
     <ImageView
         android:id="@+id/Iv_imageView"
@@ -43,6 +43,15 @@
 
     <Button
         android:id="@+id/btn_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="43dp"
+        android:text="Upload" />
+    <Button
+        android:id="@+id/btn_dismiss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
